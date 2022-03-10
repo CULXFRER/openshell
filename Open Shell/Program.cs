@@ -63,48 +63,69 @@ public class Program
         }
         else if (i == "cmd")
         {
-            if (id == "@")
+            try
             {
-                Process proc = new Process();
-                proc.StartInfo.FileName = "cmd.exe";
-                proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-                proc.StartInfo.Arguments = "";
-                proc.Start();
-                proc.WaitForExit();
+                if (id == "@")
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = "cmd.exe";
+                    proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    proc.StartInfo.Arguments = "";
+                    proc.Start();
+                    proc.WaitForExit();
+                    goto Run;
+                }
+                else if (id == "#")
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = "cmd.exe";
+                    proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.Verb = "runas";
+                    proc.Start();
+                    goto Run;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in launching process. Details are in the system log:");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.ToString());
+                Console.ResetColor();
                 goto Run;
             }
-            else if (id == "#")
-            {
-                Process proc = new Process();
-                proc.StartInfo.FileName = "cmd.exe";
-                proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-                proc.StartInfo.UseShellExecute = true;
-                proc.StartInfo.Verb = "runas";
-                proc.Start();
-                goto Run;
-            }
-
         }
         else if (i == "powershell")
         {
-            if (id == "@")
+            try
             {
-                Process proc = new Process();
-                proc.StartInfo.FileName = "powershell.exe";
-                proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-                proc.StartInfo.Arguments = "";
-                proc.Start();
-                proc.WaitForExit();
-                goto Run;
+                if (id == "@")
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = "powershell.exe";
+                    proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    proc.StartInfo.Arguments = "";
+                    proc.Start();
+                    proc.WaitForExit();
+                    goto Run;
+                }
+                if (id == "#")
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = "powershell.exe";
+                    proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.Verb = "runas";
+                    proc.Start();
+                    goto Run;
+                }
             }
-            if (id == "#")
+            catch (Exception ex)
             {
-                Process proc = new Process();
-                proc.StartInfo.FileName = "powershell.exe";
-                proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-                proc.StartInfo.UseShellExecute = true;
-                proc.StartInfo.Verb = "runas";
-                proc.Start();
+                Console.WriteLine("Error in launching process. Details are in the system log:");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ResetColor();
                 goto Run;
             }
         }
@@ -166,7 +187,8 @@ public class Program
                     Console.ResetColor();
                     goto Run;
                 }
-            }else
+            }
+            else
             {
                 Console.WriteLine("Null command!");
                 goto Run;
