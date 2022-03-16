@@ -11,7 +11,7 @@ public class Program
         Console.Write(Environment.UserName);
         if (id == "@")
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Yellow;
         }
         else
         {
@@ -19,12 +19,11 @@ public class Program
         }
 
         Console.Write($" {id} ");
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.Write(Environment.UserDomainName + " ");
         Console.ResetColor();
 
-        string i = Console.ReadLine();
-        i = i.ToLower();
+        string i = Console.ReadLine().ToString();
 
         if (i == "help" | i == "info")
         {
@@ -168,7 +167,14 @@ public class Program
             {
                 try
                 {
-                    proc.StartInfo.FileName = i.Replace(i.Remove(0, i.Split()[0].Length), "");
+                    try
+                    {
+                        proc.StartInfo.FileName = i.Replace(i.Remove(0, i.Split()[0].Length), "");
+                    }
+                    catch(Exception e)
+                    {
+                        proc.StartInfo.FileName = i;
+                    }
                     proc.StartInfo.Arguments = i.Remove(0, i.Split()[0].Length);
                     proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
                     if (id == "#")

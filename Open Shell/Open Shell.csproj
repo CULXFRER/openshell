@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>True</UseWindowsForms>
+    <StartupObject></StartupObject>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/zed-ryzen/openshell/</RepositoryUrl>
+    <Copyright>Matnazarov Sobirjon</Copyright>
+    <Description>Open Shell - a cross platform universal shell.</Description>
+  </PropertyGroup>
+
+</Project>
