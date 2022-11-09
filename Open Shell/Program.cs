@@ -6,7 +6,7 @@ public class Program
     {
         Console.WriteLine("Hello, this is simple open shell!");
         string id = "@";
-    Run:
+    Run:  
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.Write(Environment.UserName);
         if (id == "@")
